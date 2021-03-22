@@ -71,18 +71,18 @@ func (c *CarWheel) Stopped() {
 }
 
 func (c *CarWheel) ParallelLeft()  {
-	wheel(c.MotorA1, c.MotorA2, FORWARD)
-	wheel(c.MotorB1, c.MotorB2, BACKWARD)
-	wheel(c.MotorC1, c.MotorC2, BACKWARD)
-	wheel(c.MotorD1, c.MotorD2, FORWARD)
-	fmt.Printf("car move parallel left.\n")
-}
-
-func (c *CarWheel) ParallelRight()  {
 	wheel(c.MotorA1, c.MotorA2, BACKWARD)
 	wheel(c.MotorB1, c.MotorB2, FORWARD)
 	wheel(c.MotorC1, c.MotorC2, FORWARD)
 	wheel(c.MotorD1, c.MotorD2, BACKWARD)
+	fmt.Printf("car move parallel left.\n")
+}
+
+func (c *CarWheel) ParallelRight()  {
+	wheel(c.MotorA1, c.MotorA2, FORWARD)
+	wheel(c.MotorB1, c.MotorB2, BACKWARD)
+	wheel(c.MotorC1, c.MotorC2, BACKWARD)
+	wheel(c.MotorD1, c.MotorD2, FORWARD)
 	fmt.Printf("car move parallel right.\n")
 }
 
