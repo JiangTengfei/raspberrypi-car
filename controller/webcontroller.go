@@ -24,11 +24,18 @@ func (c *WebController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	switch req.URL.Path {
 	case "/":
 		fmt.Fprintf(w, "Welcome to RaspberryPi Car.")
-	case "/control":
+	case "/forward":
 		c.CarWheel.Forward()
-		w.Header().Set("Content-Type", "text/html")
-		_ = c.Templates.ExecuteTemplate(w, "index.tmpl", map[string]interface{}{
-			"name": "jtf",
-		})
+		//w.Header().Set("Content-Type", "text/html")
+		//_ = c.Templates.ExecuteTemplate(w, "index.tmpl", map[string]interface{}{
+		//	"name": "jtf",
+		//})
+		fmt.Fprintf(w, "forward")
+	case "/backward":
+		c.CarWheel.Backward()
+		fmt.Fprintf(w, "backward")
+	case "/stopped":
+		c.CarWheel.Stopped()
+		fmt.Fprintf(w, "stopped")
 	}
 }
