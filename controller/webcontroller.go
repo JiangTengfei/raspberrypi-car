@@ -37,5 +37,11 @@ func (c *WebController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	case "/stopped":
 		c.CarWheel.Stopped()
 		fmt.Fprintf(w, "stopped")
+	case "/parallel_left":
+		c.CarWheel.ParallelLeft()
+		fmt.Fprintf(w, "parallel left")
+	case "/parallel_right":
+		c.CarWheel.ParallelRight()
+		fmt.Fprintf(w, "parallel right")
 	}
 }
