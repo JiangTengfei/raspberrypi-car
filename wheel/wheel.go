@@ -20,9 +20,9 @@ type CarWheel struct {
 type Direct int
 
 const (
-	FORWARD  = Direct(1)
-	BACKWARD = Direct(2)
-	STOPPED  = Direct(3)
+	FORWARD  Direct = 1
+	BACKWARD Direct = 2
+	STOPPED  Direct = 3
 )
 
 func InitCarWheel() *CarWheel {
@@ -70,7 +70,7 @@ func (c *CarWheel) Stopped() {
 	fmt.Printf("car move stopped.\n")
 }
 
-func (c *CarWheel) ParallelLeft()  {
+func (c *CarWheel) ParallelLeft() {
 	wheel(c.MotorA1, c.MotorA2, BACKWARD)
 	wheel(c.MotorB1, c.MotorB2, FORWARD)
 	wheel(c.MotorC1, c.MotorC2, FORWARD)
@@ -78,7 +78,7 @@ func (c *CarWheel) ParallelLeft()  {
 	fmt.Printf("car move parallel left.\n")
 }
 
-func (c *CarWheel) ParallelRight()  {
+func (c *CarWheel) ParallelRight() {
 	wheel(c.MotorA1, c.MotorA2, FORWARD)
 	wheel(c.MotorB1, c.MotorB2, BACKWARD)
 	wheel(c.MotorC1, c.MotorC2, BACKWARD)
@@ -86,11 +86,11 @@ func (c *CarWheel) ParallelRight()  {
 	fmt.Printf("car move parallel right.\n")
 }
 
-func (c *CarWheel) TurnLeft()  {
+func (c *CarWheel) TurnLeft() {
 
 }
 
-func (c *CarWheel) TurnRight()  {
+func (c *CarWheel) TurnRight() {
 
 }
 
