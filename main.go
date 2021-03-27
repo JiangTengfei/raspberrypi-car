@@ -4,7 +4,10 @@ import (
 	"github.com/googolgl/go-i2c"
 	"github.com/googolgl/go-pca9685"
 	"log"
+	"net/http"
 	"periph.io/x/host/v3"
+	"raspberrypi-car/controller"
+	"raspberrypi-car/wheel"
 	"time"
 )
 
@@ -41,4 +44,8 @@ func main() {
 
 	// Fraction as pulse width expressed between 0.0 `MinPulse` and 1.0 `MaxPulse`
 	servo0.Fraction(0.5)
+
+	carWheel := wheel.InitCarWheel()
+	webController := controller.NewWebController(carWheel)
+	http.ListenAndServe(":8080", webController)
 }
