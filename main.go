@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"periph.io/x/conn/v3/driver/driverreg"
 	"periph.io/x/conn/v3/i2c/i2creg"
+	"periph.io/x/conn/v3/physic"
 	"periph.io/x/devices/v3/pca9685"
 	"periph.io/x/host/v3"
 	"raspberrypi-car/camera"
@@ -35,7 +36,7 @@ func main() {
 	}
 
 	c := camera.InitCamera(PCADev)
-	c.SetAngle(10, 20)
+	c.SetAngle(physic.Angle(90), physic.Angle(90))
 
 	carWheel := wheel.InitCarWheel()
 	webController := controller.NewWebController(carWheel)
