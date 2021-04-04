@@ -4,7 +4,6 @@ import (
 	"fmt"
 	"periph.io/x/conn/v3/physic"
 	"periph.io/x/devices/v3/pca9685"
-	_ "raspberrypi-car/pca"
 )
 
 var baseChan chan physic.Angle

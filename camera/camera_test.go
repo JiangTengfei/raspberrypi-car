@@ -6,6 +6,6 @@ import (
 )
 
 func TestInitCamera(t *testing.T) {
-	c := InitCamera(pca.PCA9685Dev)
+	c := InitCamera(pca.PCADev)
 	c.SetAngle(10, 20)
 }
