@@ -15,6 +15,7 @@ type Camera struct {
 }
 
 func InitCamera(p *pca9685.Dev) *Camera {
+	fmt.Printf("call InitCamera method. dev: %+v \n", p)
 	servos := pca9685.NewServoGroup(p, 50, 650, 0, 360)
 	baseServo := servos.GetServo(0)
 	higherServo := servos.GetServo(1)
