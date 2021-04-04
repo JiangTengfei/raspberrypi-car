@@ -16,6 +16,10 @@ type Camera struct {
 
 func InitCamera(p *pca9685.Dev) *Camera {
 	fmt.Printf("call InitCamera method. dev: %+v \n", p)
+
+	baseChan = make(chan physic.Angle)
+	higherChan = make(chan physic.Angle)
+
 	servos := pca9685.NewServoGroup(p, 50, 650, 0, 360)
 	baseServo := servos.GetServo(0)
 	higherServo := servos.GetServo(1)
@@ -29,20 +33,20 @@ func InitCamera(p *pca9685.Dev) *Camera {
 	}
 
 	go func(cam *Camera) {
-		for {
-			select {
-			case a := <-baseChan:
-				fmt.Printf("receive sig from baseChan: %+v", a)
-				if err := c.BaseServo.SetAngle(a); err != nil {
-					fmt.Printf("base servo SetAngle method return error: %+v", err)
-				}
-			case a := <-higherChan:
-				fmt.Printf("receive sig from higherChan: %+v", a)
-				if err := c.HigherServo.SetAngle(a); err != nil {
-					fmt.Printf("higher servo SetAngle method return error: %+v", err)
-				}
+
+		select {
+		case a := <-baseChan:
+			fmt.Printf("receive sig from baseChan: %+v", a)
+			if err := c.BaseServo.SetAngle(a); err != nil {
+				fmt.Printf("base servo SetAngle method return error: %+v", err)
+			}
+		case a := <-higherChan:
+			fmt.Printf("receive sig from higherChan: %+v", a)
+			if err := c.HigherServo.SetAngle(a); err != nil {
+				fmt.Printf("higher servo SetAngle method return error: %+v", err)
 			}
 		}
+
 	}(c)
 
 	return c
