@@ -15,7 +15,7 @@ func main() {
 		log.Fatal(err)
 	}
 
-	c := camera.InitCamera(pca.PCA9685Dev)
+	c := camera.InitCamera(pca.PCADev)
 	c.SetAngle(10, 20)
 
 	carWheel := wheel.InitCarWheel()

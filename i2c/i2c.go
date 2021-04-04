@@ -6,11 +6,11 @@ import (
 	"periph.io/x/conn/v3/i2c/i2creg"
 )
 
-var I2cBus i2c.BusCloser
+var Bus i2c.BusCloser
 
 func init() {
 	var err error
-	I2cBus, err = i2creg.Open("")
+	Bus, err = i2creg.Open("")
 	if err != nil {
 		log.Fatal(err)
 	}
