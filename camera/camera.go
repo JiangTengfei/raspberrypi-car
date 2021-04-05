@@ -27,6 +27,9 @@ func InitCamera(p *pca9685.Dev) *Camera {
 	baseServo.SetMinMaxAngle(0, 270)
 	higherServo.SetMinMaxAngle(0, 270)
 
+	baseServo.SetAngle(physic.Angle(0))
+	higherServo.SetAngle(physic.Angle(0))
+
 	c := &Camera{
 		BaseServo:   baseServo,
 		HigherServo: higherServo,
