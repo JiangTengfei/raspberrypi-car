@@ -1,11 +1,11 @@
 package camera
 
 import (
-	"raspberrypi-car/pca"
+	"raspberrypi-car/car"
 	"testing"
 )
 
 func TestInitCamera(t *testing.T) {
-	c := InitCamera(pca.PCADev)
+	c := InitCamera(car.PCA9685)
 	c.SetAngle(10, 20)
 }

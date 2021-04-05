@@ -4,8 +4,10 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"periph.io/x/conn/v3/physic"
 	"raspberrypi-car/camera"
 	"raspberrypi-car/wheel"
+	"strconv"
 )
 
 type WebController struct {
@@ -45,5 +47,24 @@ func (c *WebController) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	case "/parallel_right":
 		c.CarWheel.ParallelRight()
 		fmt.Fprintf(w, "parallel right")
+
+	case "/camera":
+		values := req.URL.Query()
+		hStr := values.Get("h")
+		vStr := values.Get("v")
+
+		h, err := strconv.Atoi(hStr)
+		if err != nil {
+			h = 0
+			fmt.Printf("Atoi failed. hStr: %s", hStr)
+		}
+		v, err := strconv.Atoi(vStr)
+		if err != nil {
+			h = 0
+			fmt.Printf("Atoi failed. vStr: %s", vStr)
+		}
+
+		c.Cam.SetAngle(physic.Angle(h), physic.Angle(v))
+		fmt.Fprintf(w, "executed.")
 	}
 }
