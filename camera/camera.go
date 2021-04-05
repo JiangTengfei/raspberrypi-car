@@ -20,12 +20,12 @@ func InitCamera(p *pca9685.Dev) *Camera {
 	baseChan = make(chan physic.Angle)
 	higherChan = make(chan physic.Angle)
 
-	servos := pca9685.NewServoGroup(p, 50, 650, 0, 90)
+	servos := pca9685.NewServoGroup(p, 50, 650, 10, 180)
 	baseServo := servos.GetServo(0)
 	higherServo := servos.GetServo(1)
 
-	baseServo.SetMinMaxAngle(0, 90)
-	higherServo.SetMinMaxAngle(0, 90)
+	baseServo.SetMinMaxAngle(10, 180)
+	higherServo.SetMinMaxAngle(10, 180)
 
 	c := &Camera{
 		BaseServo:   baseServo,
