@@ -4,15 +4,17 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"raspberrypi-car/camera"
 	"raspberrypi-car/wheel"
 )
 
 type WebController struct {
+	Cam       *camera.Camera
 	CarWheel  *wheel.CarWheel
 	Templates *template.Template
 }
 
-func NewWebController(carWheel *wheel.CarWheel) *WebController {
+func NewWebController(carWheel *wheel.CarWheel, cam *camera.Camera) *WebController {
 	templates := template.Must(template.New("").Funcs(nil).ParseGlob("templates/*"))
 	return &WebController{
 		CarWheel:  carWheel,
