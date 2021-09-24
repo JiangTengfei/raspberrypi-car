@@ -37,12 +37,12 @@ func InitCamera(p *pca9685.Dev) *Camera {
 		for {
 			select {
 			case a := <-baseChan:
-				fmt.Printf("receive sig from baseChan: %+v\n", a)
+				fmt.Printf("receive sig from baseChan: %+v\n", a.String())
 				if err := c.BaseServo.SetAngle(a); err != nil {
 					fmt.Printf("base servo SetAngle method return error: %+v\n", err)
 				}
 			case a := <-higherChan:
-				fmt.Printf("receive sig from higherChan: %+v\n", a)
+				fmt.Printf("receive sig from higherChan: %+v\n", a.String())
 				if err := c.HigherServo.SetAngle(a); err != nil {
 					fmt.Printf("higher servo SetAngle method return error: %+v\n", err)
 				}
