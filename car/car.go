@@ -20,18 +20,18 @@ func InitCar() *RaspPiCar {
 	var err error
 	Bus, err = i2creg.Open("")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("i2creg.Open", err)
 	}
 	time.Sleep(2*time.Second)
 	PCA9685, err = pca9685.NewI2C(Bus, pca9685.I2CAddr)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatal("pca9685.NewI2C", err)
 	}
 	if err := PCA9685.SetPwmFreq(50 * physic.Hertz); err != nil {
-		log.Fatal(err)
+		log.Fatal("PCA9685.SetPwmFreq", err)
 	}
 	if err := PCA9685.SetAllPwm(0, 0); err != nil {
-		log.Fatal(err)
+		log.Fatal("PCA9685.SetAllPwm", err)
 	}
 	cam := camera.InitCamera(PCA9685)
 	carWheel := wheel.InitCarWheel()
