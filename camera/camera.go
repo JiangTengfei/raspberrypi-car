@@ -24,8 +24,8 @@ func InitCamera(p *pca9685.Dev) *Camera {
 	baseServo := servos.GetServo(0)
 	higherServo := servos.GetServo(1)
 
-	baseServo.SetMinMaxAngle(10, 180)
-	higherServo.SetMinMaxAngle(10, 180)
+	baseServo.SetMinMaxAngle(1, 180)
+	higherServo.SetMinMaxAngle(1, 180)
 
 	c := &Camera{
 		BaseServo:   baseServo,
@@ -50,6 +50,9 @@ func InitCamera(p *pca9685.Dev) *Camera {
 		}
 
 	}(c)
+
+	// 初始化位置
+	c.SetAngle(physic.Angle(90), physic.Angle(10))
 
 	return c
 }
