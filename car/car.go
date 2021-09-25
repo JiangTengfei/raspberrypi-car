@@ -10,6 +10,7 @@ import (
 	"raspberrypi-car/camera"
 	"raspberrypi-car/controller"
 	"raspberrypi-car/wheel"
+	"time"
 )
 
 var Bus i2c.BusCloser
@@ -21,7 +22,7 @@ func InitCar() *RaspPiCar {
 	if err != nil {
 		log.Fatal(err)
 	}
-
+	time.Sleep(2*time.Second)
 	PCA9685, err = pca9685.NewI2C(Bus, pca9685.I2CAddr)
 	if err != nil {
 		log.Fatal(err)
