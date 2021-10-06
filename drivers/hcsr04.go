@@ -20,8 +20,8 @@ func NewHCSR04(ping gpio.PinIO, echo gpio.PinIO) (result HCSR04) {
 
 func (hcsr *HCSR04) MeasureDistance() float32 {
 
-	_ = hcsr.EchoPin.Out(gpio.Low)
 	_ = hcsr.PingPin.Out(gpio.Low)
+	_ = hcsr.EchoPin.In(gpio.PullUp, gpio.NoEdge)
 
 	strobeZero := 0
 	strobeOne := 0
