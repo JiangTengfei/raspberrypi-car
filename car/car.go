@@ -39,7 +39,7 @@ func InitCar() *RaspPiCar {
 	webController := controller.NewWebController(carWheel, cam)
 
 	// 超声波距离传感器
-    ultrasonicSensor := ultrasonic.NewSensor()
+    ultrasonicSensor := ultrasonic.NewSensor(webController)
 	go ultrasonicSensor.Measure()
 	return &RaspPiCar{
 		Cam:       cam,
