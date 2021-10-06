@@ -9,6 +9,7 @@ import (
 	"periph.io/x/devices/v3/pca9685"
 	"raspberrypi-car/camera"
 	"raspberrypi-car/controller"
+	"raspberrypi-car/ultrasonic"
 	"raspberrypi-car/wheel"
 	"time"
 )
@@ -37,6 +38,9 @@ func InitCar() *RaspPiCar {
 	carWheel := wheel.InitCarWheel()
 	webController := controller.NewWebController(carWheel, cam)
 
+	// 超声波距离传感器
+    ultrasonicSensor := ultrasonic.NewSensor()
+	go ultrasonicSensor.Measure()
 	return &RaspPiCar{
 		Cam:       cam,
 		CarWheels: carWheel,
